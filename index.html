@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HelloWorld</title>
+    <style>
+        #characters {
+            font-size: 2rem;
+        }
+        #typed {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="characters">
+        <span id="typed"></span><span id="untyped">HelloWorld</span>
+    </div>
+    <script>
+        const typedField = document.getElementById('typed');
+        const untypedField = document.getElementById('untyped');
+
+        let typed = '';
+        let unTyped = 'HelloWorld';
+        
+        function updateTextField(){
+            typedField.textContent = typed;
+            untypedField.textContent = unTyped;
+        }
+
+        document.addEventListener('keydown',function(e){
+            console.log("a " + e.key);
+            console.log("b " + unTyped.substring(0,1));
+            
+            if(e.key !== unTyped.substring(0,1)){return;} 
+            
+            typed += unTyped.substring(0,1);
+            unTyped = unTyped.substring(1);
+
+            console.log("c " + typed);
+            console.log("d " + unTyped);
+
+            updateTextField();
+
+            if (unTyped === ''){
+                typed = '';
+                unTyped = 'HelloWorld';
+                updateTextField();
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
